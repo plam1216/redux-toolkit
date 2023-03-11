@@ -9,7 +9,12 @@ const PostsList = () => {
     // const posts = useSelector(state => state.posts)
     const posts = useSelector(selectAllPosts)
 
-    const renderedPosts = posts.map(post => (
+    // localeCompare returns -1, 1, or 0 based on if one is greater than the other
+    // slice returns shallow copy of array
+    // store shallow copy into orderedPosts
+    const orderedPosts = posts.slice().sort((a,b) => b.date.localeCompare(a.date))
+
+    const renderedPosts = orderedPosts.map(post => (
         <article>
             <h3>{post.title}</h3>
 
