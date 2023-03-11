@@ -4,6 +4,8 @@ import { selectAllPosts } from './postsSlice'
 
 import PostAuthor from './PostAuthor'
 import TimeAgo from './TimeAgo'
+import ReactionButtons from './ReactionButtons'
+
 
 const PostsList = () => {
     // const posts = useSelector(state => state.posts)
@@ -12,7 +14,7 @@ const PostsList = () => {
     // localeCompare returns -1, 1, or 0 based on if one is greater than the other
     // slice returns shallow copy of array
     // store shallow copy into orderedPosts
-    const orderedPosts = posts.slice().sort((a,b) => b.date.localeCompare(a.date))
+    const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 
     const renderedPosts = orderedPosts.map(post => (
         <article>
@@ -22,8 +24,9 @@ const PostsList = () => {
 
             <p className="postCredit">
                 <PostAuthor userId={post.userId} />
-                <TimeAgo timestamp={post.date}/>
+                <TimeAgo timestamp={post.date} />
             </p>
+            <ReactionButtons post={post} />
         </article>
     ))
 
